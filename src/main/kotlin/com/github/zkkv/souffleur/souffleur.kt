@@ -1,16 +1,23 @@
 package com.github.zkkv.souffleur
 
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.ui.Messages
+import com.intellij.codeInsight.inline.completion.*
+import com.intellij.codeInsight.inline.completion.elements.InlineCompletionGrayTextElement
+import com.intellij.codeInsight.inline.completion.suggestion.InlineCompletionSingleSuggestion
 
-class Souffleur : AnAction() {
-    override fun actionPerformed(e: AnActionEvent) {
-        Messages.showMessageDialog(e.project, "Hello World!", "Hello World Window", null)
+
+class Souffleur : InlineCompletionProvider {
+    override val id: InlineCompletionProviderID = InlineCompletionProviderID("Souffleur")
+
+    override suspend fun getSuggestion(request: InlineCompletionRequest): InlineCompletionSingleSuggestion {
+        val suggestionText = "Hello world"
+        val suggestion = InlineCompletionGrayTextElement(suggestionText)
+
+        return InlineCompletionSingleSuggestion.build {
+            emit(suggestion)
+        }
     }
 
-    override fun update(e: AnActionEvent) {
-        val project = e.project
-        e.presentation.isEnabledAndVisible = project != null
+    override fun isEnabled(event: InlineCompletionEvent): Boolean {
+        return event is InlineCompletionEvent.DocumentChange
     }
 }
