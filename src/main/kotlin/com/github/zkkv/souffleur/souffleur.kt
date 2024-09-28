@@ -1,5 +1,6 @@
 package com.github.zkkv.souffleur
 
+import com.github.zkkv.souffleur.models.Ollama
 import com.intellij.codeInsight.inline.completion.*
 import com.intellij.codeInsight.inline.completion.elements.InlineCompletionGrayTextElement
 import com.intellij.codeInsight.inline.completion.suggestion.InlineCompletionSingleSuggestion
