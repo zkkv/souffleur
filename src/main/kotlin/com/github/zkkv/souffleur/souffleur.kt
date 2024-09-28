@@ -9,7 +9,8 @@ class Souffleur : InlineCompletionProvider {
     override val id: InlineCompletionProviderID = InlineCompletionProviderID("Souffleur")
 
     override suspend fun getSuggestion(request: InlineCompletionRequest): InlineCompletionSingleSuggestion {
-        val suggestionText = "Hello world"
+        val model = Ollama()
+        val suggestionText = model.suggest(request)
         val suggestion = InlineCompletionGrayTextElement(suggestionText)
 
         return InlineCompletionSingleSuggestion.build {
