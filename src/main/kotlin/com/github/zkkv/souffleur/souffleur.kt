@@ -9,7 +9,6 @@ class Souffleur : InlineCompletionProvider {
     override val id: InlineCompletionProviderID = InlineCompletionProviderID("Souffleur")
 
     override suspend fun getSuggestion(request: InlineCompletionRequest): InlineCompletionSingleSuggestion {
-        val model = Ollama()
         val suggestionText = model.suggest(request)
         val suggestion = InlineCompletionGrayTextElement(suggestionText)
 
@@ -21,4 +20,6 @@ class Souffleur : InlineCompletionProvider {
     override fun isEnabled(event: InlineCompletionEvent): Boolean {
         return event is InlineCompletionEvent.DocumentChange
     }
+
+    private val model = Ollama()
 }
