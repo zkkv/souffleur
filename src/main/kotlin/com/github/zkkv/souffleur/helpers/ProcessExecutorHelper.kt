@@ -4,7 +4,7 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 
 object ProcessExecutorHelper {
-    fun execute(command : List<String>) : String{
+    fun execute(command : List<String>) : String {
         return try {
             val process = ProcessBuilder(command).start()
 

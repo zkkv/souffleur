@@ -1,5 +1,6 @@
 package com.github.zkkv.souffleur
 
+import com.github.zkkv.souffleur.interfaces.LanguageModel
 import com.github.zkkv.souffleur.models.Ollama
 import com.intellij.codeInsight.inline.completion.*
 import com.intellij.codeInsight.inline.completion.elements.InlineCompletionGrayTextElement
@@ -22,5 +23,5 @@ class Souffleur : InlineCompletionProvider {
         return event is InlineCompletionEvent.DocumentChange
     }
 
-    private val model = Ollama()
+    private val model: LanguageModel = Ollama()
 }

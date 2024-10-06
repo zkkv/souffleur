@@ -1,6 +1,8 @@
 package com.github.zkkv.souffleur.models
 
+import com.github.zkkv.souffleur.structures.TrieCache
 import com.github.zkkv.souffleur.helpers.ProcessExecutorHelper
+import com.github.zkkv.souffleur.interfaces.Cache
 import com.github.zkkv.souffleur.interfaces.LanguageModel
 import com.intellij.codeInsight.inline.completion.InlineCompletionRequest
 
@@ -14,9 +16,16 @@ class Ollama : LanguageModel {
     }
 
     private val model = "llama3.2:1b"
+    private val cache: Cache = TrieCache()
 
     private fun query(prompt : String) : String {
+        val cached = cache.retrieve(prompt)
+        if (cached != null) {
+            return cached
+        }
         val command = listOf("docker", "exec", "ollama", "ollama", "run", model, prompt)
-        return ProcessExecutorHelper.execute(command)
+        val response = ProcessExecutorHelper.execute(command)
+        cache.insert(prompt, response)
+        return response
     }
 }
