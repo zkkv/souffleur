@@ -23,8 +23,14 @@ class Ollama : LanguageModel {
         if (cached != null) {
             return cached
         }
-        val command = listOf("docker", "exec", "ollama", "ollama", "run", model, prompt)
-        val response = ProcessExecutorHelper.execute(command)
+        
+        val response = try {
+            val command = listOf("docker", "exec", "ollama", "ollama", "run", model, prompt)
+            ProcessExecutorHelper.execute(command)
+        } catch (e: RuntimeException) {
+            System.err.println("${e.message}\nMake sure you're running docker container")
+            return ""
+        }
         cache.insert(prompt, response)
         return response
     }
