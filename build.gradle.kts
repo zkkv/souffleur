@@ -2,6 +2,7 @@ plugins {
   id("java")
   id("org.jetbrains.kotlin.jvm") version "1.9.24"
   id("org.jetbrains.intellij") version "1.17.3"
+  id("org.jetbrains.kotlinx.kover") version "0.9.0-RC"
 }
 
 group = "com.github.zkkv"
@@ -9,6 +10,11 @@ version = "1.0-SNAPSHOT"
 
 repositories {
   mavenCentral()
+}
+
+dependencies {
+  testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -43,5 +49,9 @@ tasks {
 
   publishPlugin {
     token.set(System.getenv("PUBLISH_TOKEN"))
+  }
+
+  test {
+    useJUnitPlatform()
   }
 }
