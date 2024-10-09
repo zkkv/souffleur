@@ -2,7 +2,11 @@ package com.github.zkkv.souffleur.structures
 
 import com.github.zkkv.souffleur.interfaces.Cache
 
+/**
+ * Trie-based implementation of the Cache interface.
+ */
 class TrieCache : Cache {
+
     override fun contains(key: String): Boolean {
         var currentNode: Node = root
         for (c in key) {
@@ -28,6 +32,9 @@ class TrieCache : Cache {
         currentNode.isEnd = true
     }
 
+    /**
+     * Root node of the trie.
+     */
     private val root: Node = Node(value=null)
 
     private data class Node(

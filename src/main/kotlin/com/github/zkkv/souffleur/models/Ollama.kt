@@ -6,6 +6,9 @@ import com.github.zkkv.souffleur.interfaces.Cache
 import com.github.zkkv.souffleur.interfaces.LanguageModel
 import com.intellij.codeInsight.inline.completion.InlineCompletionRequest
 
+/**
+ * Ollama LLM.
+ */
 class Ollama : LanguageModel {
     override fun suggest(request: InlineCompletionRequest): String {
         val documentText = request.document.text
@@ -15,9 +18,19 @@ class Ollama : LanguageModel {
         return this.query(prompt)
     }
 
+    /**
+     * Specific LLM model version.
+     */
     private val model = "llama3.2:1b"
+
+    /**
+     * Internal cache.
+     */
     private val cache: Cache = TrieCache()
 
+    /**
+     * Helper method that first checks the cache for saved suggestions.
+     */
     private fun query(prompt : String) : String {
         val cached = cache.retrieve(prompt)
         if (cached != null) {
