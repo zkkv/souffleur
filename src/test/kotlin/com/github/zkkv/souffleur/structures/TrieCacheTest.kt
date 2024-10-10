@@ -1,12 +1,13 @@
 package com.github.zkkv.souffleur.structures
 
+import com.github.zkkv.souffleur.interfaces.Cache
 import org.junit.jupiter.api.Assertions.*
 import kotlin.test.Test
 import kotlin.test.BeforeTest
 
 class TrieCacheTest {
 
-    private lateinit var sut: TrieCache
+    private lateinit var sut: Cache
 
     @BeforeTest
     fun `setup TrieCache instance`() {

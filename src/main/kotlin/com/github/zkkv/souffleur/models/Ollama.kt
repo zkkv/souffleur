@@ -9,7 +9,7 @@ import com.intellij.codeInsight.inline.completion.InlineCompletionRequest
 /**
  * Ollama LLM.
  */
-class Ollama : LanguageModel {
+class Ollama(private val cache: Cache) : LanguageModel {
     override fun suggest(request: InlineCompletionRequest): String {
         val documentText = request.document.text
         val caretPosition = request.endOffset
@@ -22,11 +22,6 @@ class Ollama : LanguageModel {
      * Specific LLM model version.
      */
     private val model = "llama3.2:1b"
-
-    /**
-     * Internal cache.
-     */
-    private val cache: Cache = TrieCache()
 
     /**
      * Helper method that first checks the cache for saved suggestions.
