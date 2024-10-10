@@ -15,6 +15,7 @@ repositories {
 dependencies {
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+  testImplementation("io.mockk:mockk:1.13.13")
 }
 
 // Configure Gradle IntelliJ Plugin
