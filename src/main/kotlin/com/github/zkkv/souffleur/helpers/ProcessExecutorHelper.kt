@@ -16,24 +16,18 @@ object ProcessExecutorHelper {
      * @throws RuntimeException if the execution goes wrong
      */
     fun execute(command : List<String>) : String {
-        return try {
-            val process = ProcessBuilder(command).start()
-
-            val reader = BufferedReader(InputStreamReader(process.inputStream))
-            val output = StringBuilder()
-
-            reader.use {
-                it.lineSequence().forEach { line ->
-                    output.appendLine(line)
-                }
-            }
+        try {
+            val process = ProcessBuilder(command)
+                .redirectOutput(ProcessBuilder.Redirect.PIPE)
+                .redirectError(ProcessBuilder.Redirect.PIPE)
+                .start()
 
             val exitCode = process.waitFor()
             if (exitCode != 0) {
                 throw RuntimeException("Process exited with code: $exitCode")
             }
 
-            output.toString().trim()
+            return process.inputStream.bufferedReader().readText().trim()
         } catch (e: Exception) {
             throw RuntimeException("Exception: ${e.message}")
         }
