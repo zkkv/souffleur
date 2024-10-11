@@ -16,6 +16,7 @@ dependencies {
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
   testImplementation("io.mockk:mockk:1.13.13")
+  testImplementation("junit:junit:3.8.1")
 }
 
 // Configure Gradle IntelliJ Plugin
@@ -54,5 +55,31 @@ tasks {
 
   test {
     useJUnitPlatform()
+    testLogging {
+      events("passed", "skipped", "failed")
+    }
   }
 }
+
+tasks.register<Test>("testPlugin") {
+  description = "Runs the plugin tests. Requires JUnit 3."
+  group = "verification"
+
+  // Include only the JUnit 3 test classes
+  include("**/SouffleurTest.class")
+
+  // Set up a test classpath
+  classpath = sourceSets["test"].runtimeClasspath
+
+  testLogging {
+    events("passed", "skipped", "failed")
+  }
+}
+
+tasks.register("testAll") {
+  description = "Runs both 'test' and 'testPlugin' tasks."
+  group = "verification"
+
+  dependsOn("test", "testPlugin")
+}
+
