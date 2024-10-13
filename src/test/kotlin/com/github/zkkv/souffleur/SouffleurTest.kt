@@ -26,11 +26,6 @@ class SouffleurTest : BasePlatformTestCase() {
         mockkConstructor(Ollama::class)
     }
 
-    override fun tearDown() {
-        unmockkConstructor(Ollama::class)  // This is strictly not necessary as it works without it
-        super.tearDown()
-    }
-
     override fun runInDispatchThread() = false
 
     private fun setReturnValuesOfMocks(modelSuggestion: String) {
