@@ -5,7 +5,7 @@ Souffleur is an IntelliJ IDEA plugin that provides inline code suggestions using
 ## Installation
 
 ### Prerequisites
-Right now, the only LLM supported is Ollama that should be run locally. To use the plugin, you will need a Docker container running with `llama3.2:1b` in the background.
+Right now, the only LLMs supported are LLama and Phi that should be run locally. To use the plugin, you will need a Docker container running with the model in the background.
 
 The command below will create a new container named `ollama` from an image named `ollama/ollama`. If you don't have an image with that name, it will first pull it from a repository.
 ```shell
@@ -17,9 +17,15 @@ Now start the container:
 docker start ollama
 ```
 
+Choose a `<model>` you would like to use from the list below:
+```
+phi3.5
+llama3.2:1b
+```
+
 The container on its own only has an Ollama CLI but not the model yet. To get the necessary model, execute:
 ```shell
-docker exec -it ollama ollama pull llama3.2:1b
+docker exec -it ollama ollama pull <model>
 ```
 
 You are ready to use the plugin. If you want to stop the container, run:
@@ -41,6 +47,9 @@ docker stop ollama
 gradlew.bat build
 ```
 Alternatively, use an IDE in which you can execute Gradle `build` configuration.
+
+### Choosing Model
+If you pulled `phi3.5` in the Docker, you don't have to change anything. If you pulled any other model, you will need to go to `souffleur.kt` and replace the model constructor with the respective model. For example, instead of `Phi` class you need to use `Ollama`. 
 
 ### Running
 1. Similarly to `build`, execute `runIde` (it might be called  `Run Plugin`). IntelliJ window will appear.
