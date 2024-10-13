@@ -1,6 +1,6 @@
 package com.github.zkkv.souffleur
 
-import com.github.zkkv.souffleur.models.Ollama
+import com.github.zkkv.souffleur.models.Phi
 import com.intellij.codeInsight.inline.completion.*
 import com.intellij.openapi.fileTypes.PlainTextFileType
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
@@ -23,13 +23,13 @@ class SouffleurTest : BasePlatformTestCase() {
 
     override fun setUp() {
         super.setUp()
-        mockkConstructor(Ollama::class)
+        mockkConstructor(Phi::class)
     }
 
     override fun runInDispatchThread() = false
 
     private fun setReturnValuesOfMocks(modelSuggestion: String) {
-        every { anyConstructed<Ollama>().suggest(any(InlineCompletionRequest::class)) } returns modelSuggestion
+        every { anyConstructed<Phi>().suggest(any(InlineCompletionRequest::class)) } returns modelSuggestion
     }
 
     private fun registerProvider() {
