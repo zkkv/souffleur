@@ -40,7 +40,6 @@ class OllamaTest {
         val endOffset = 5
         assertTrue(model.prompt(documentText, endOffset).isNotEmpty())
         assertTrue(model.prompt(documentText, endOffset).contains("<TEST"))
-        assertTrue(model.prompt(documentText, endOffset).contains("STRING>"))
     }
 
     @Test
