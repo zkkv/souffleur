@@ -52,14 +52,6 @@ interface LanguageModel {
             |
             |```
             |${documentText.substring(0, caretPosition)}
-            |```
-            |
-            |The response you give will appear here.
-            |
-            |Below you can find the rest of the document contents.
-            |
-            |```
-            |${documentText.substring(caretPosition)}
             |```"
         """.trimMargin()
     }
