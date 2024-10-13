@@ -5,7 +5,7 @@ Souffleur is an IntelliJ IDEA plugin that provides inline code suggestions using
 ## Installation
 
 ### Prerequisites
-Right now, the only LLMs supported are LLama and Phi that should be run locally. To use the plugin, you will need a Docker container running with the model in the background.
+Right now, the only LLMs supported are Llama and Phi that should be run locally. To use the plugin, you will need a Docker container running with the model in the background.
 
 The command below will create a new container named `ollama` from an image named `ollama/ollama`. If you don't have an image with that name, it will first pull it from a repository.
 ```shell
@@ -64,7 +64,7 @@ Code coverage report can be generated with `koverHtmlReport` configuration (run 
 ## Design
 The plugin class inherits from `InlineCompletionProvider` and uses an instance of `LanguageModel` under the hood (currently `Phi`). That model is queried and then returns a suggestion. More models can be easily added in the future because they follow a very simple interface.
 
-Ollama uses a cache based on a Trie data structure that stores code prefixes. If the prefix is found in the cache, it uses the suggestion associated with that prefixes instead of querying the LLM again.
+`Phi` is inherits from `Ollama` which uses a cache based on a Trie data structure that stores code prefixes. If the prefix is found in the cache, it uses the suggestion associated with that prefixes instead of querying the LLM again.
 
 ## Project Structure
 ```
