@@ -62,7 +62,7 @@ Unit tests running with JUnit 5 don't test the plugin but only the inner classes
 Code coverage report can be generated with `koverHtmlReport` configuration (run it after running tests). Find the report under `build/reports/kover/html/index.html`.
 
 ## Design
-The plugin class inherits from `InlineCompletionProvider` and uses an instance of `LanguageModel` under the hood (currently `Ollama`). That model is queried and then returns a suggestion. More models can be easily added in the future because they follow a very simple interface.
+The plugin class inherits from `InlineCompletionProvider` and uses an instance of `LanguageModel` under the hood (currently `Phi`). That model is queried and then returns a suggestion. More models can be easily added in the future because they follow a very simple interface.
 
 Ollama uses a cache based on a Trie data structure that stores code prefixes. If the prefix is found in the cache, it uses the suggestion associated with that prefixes instead of querying the LLM again.
 
