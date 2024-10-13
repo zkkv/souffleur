@@ -1,7 +1,7 @@
 package com.github.zkkv.souffleur
 
 import com.github.zkkv.souffleur.interfaces.LanguageModel
-import com.github.zkkv.souffleur.models.Ollama
+import com.github.zkkv.souffleur.models.Phi
 import com.github.zkkv.souffleur.structures.TrieCache
 import com.intellij.codeInsight.inline.completion.*
 import com.intellij.codeInsight.inline.completion.elements.InlineCompletionGrayTextElement
@@ -29,5 +29,5 @@ class Souffleur : InlineCompletionProvider {
     /**
      * The underlying language model used to provide suggestions.
      */
-    private val model: LanguageModel = Ollama(TrieCache())
+    private val model: LanguageModel = Phi(TrieCache())
 }

@@ -1,6 +1,5 @@
 package com.github.zkkv.souffleur.models
 
-import com.github.zkkv.souffleur.structures.TrieCache
 import com.github.zkkv.souffleur.helpers.ProcessExecutorHelper
 import com.github.zkkv.souffleur.interfaces.Cache
 import com.github.zkkv.souffleur.interfaces.LanguageModel
@@ -9,7 +8,7 @@ import com.intellij.codeInsight.inline.completion.InlineCompletionRequest
 /**
  * Ollama LLM.
  */
-class Ollama(private val cache: Cache) : LanguageModel {
+open class Ollama(private val cache: Cache) : LanguageModel {
     override fun suggest(request: InlineCompletionRequest): String {
         val documentText = request.document.text
         val caretPosition = request.endOffset
@@ -21,7 +20,7 @@ class Ollama(private val cache: Cache) : LanguageModel {
     /**
      * Specific LLM model version.
      */
-    private val model = "llama3.2:1b"
+    protected open val model = "llama3.2:1b"
 
     /**
      * Helper method that first checks the cache for saved suggestions.
