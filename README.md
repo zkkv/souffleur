@@ -17,7 +17,7 @@ Now start the container:
 docker start ollama
 ```
 
-Choose a `<model>` you would like to use from the list below:
+Choose a `<model>` you would like to use from the list below (`phi3.5` is recommended):
 ```
 phi3.5
 llama3.2:1b
