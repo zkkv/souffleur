@@ -64,7 +64,7 @@ Code coverage report can be generated with `koverHtmlReport` configuration (run 
 ## Design
 The plugin class inherits from `InlineCompletionProvider` and uses an instance of `LanguageModel` under the hood (currently `Phi`). That model is queried and then returns a suggestion. More models can be easily added in the future because they follow a very simple interface.
 
-`Phi` is inherits from `Ollama` which uses a cache based on a Trie data structure that stores code prefixes. If the prefix is found in the cache, it uses the suggestion associated with that prefixes instead of querying the LLM again.
+`Phi` inherits from `Ollama` which uses a cache based on a Trie data structure that stores code prefixes. If the prefix is found in the cache, it uses the suggestion associated with that prefixes instead of querying the LLM again.
 
 ## Project Structure
 ```
