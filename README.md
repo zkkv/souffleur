@@ -33,11 +33,11 @@ docker stop ollama
 2. Open the terminal.
 3. Run one of the following.
 - Mac/Linux:
-```
+```shell
 ./gradlew build
 ```
 - Windows:
-```
+```shell
 gradlew.bat build
 ```
 Alternatively, use an IDE in which you can execute Gradle `build` configuration.
@@ -58,7 +58,7 @@ The plugin class inherits from `InlineCompletionProvider` and uses an instance o
 Ollama uses a cache based on a Trie data structure that stores code prefixes. If the prefix is found in the cache, it uses the suggestion associated with that prefixes instead of querying the LLM again.
 
 ## Project Structure
-```shell
+```
 src
 ├── main
 │   ├── kotlin/com/github/zkkv/souffleur/
