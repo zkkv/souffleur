@@ -73,7 +73,7 @@ src
 
 ## Screenshots
 
-[Screenshot of the IDE where `return` is completed by `a * b;` within a function named `product`](./assets/img/completion_example.png)
+![Screenshot of the IDE where `return` is completed by `a * b;` within a function named `product`](./assets/img/completion_example.png)
 
 ## License
 This plugin is licensed under [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/). All dependencies are licensed under their respective licenses.
